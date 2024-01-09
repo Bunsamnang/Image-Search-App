@@ -27,8 +27,6 @@ async function searchImage(keyWord) {
   const data = await response.json();
   console.log(data);
 
-  // When clicking the word search it deletes the default photos
-  document.querySelector(".search-results").innerHTML = "";
   let imageContainer = "";
   data.results.forEach((result) => {
     imageContainer += `<div class = "search-result">
