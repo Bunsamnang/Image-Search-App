@@ -5,12 +5,18 @@ const showMoreBtn = document.querySelector(".show-more-btn");
 const accessKey = "KnZxdQw9V3nNQLLLqIR1LWW4QFG8RYfF92D0gYqRq58";
 let pageNum = 1;
 
+// initialize isShowMore to be false
+let isShowMore = false;
 searchBtn.addEventListener("click", () => {
+  isShowMore = false;
+  // Set pageNum to 1 every time a new type of image is searched
+  pageNum = 1;
   const keyWord = searchInput.value;
   searchImage(keyWord);
 });
 
 searchInput.addEventListener("keydown", () => {
+  isShowMore = false;
   handleKeyDown();
 });
 
@@ -18,6 +24,7 @@ searchInput.addEventListener("keydown", () => {
 showMoreBtn.addEventListener("click", () => {
   const keyWord = searchInput.value;
   pageNum += 1;
+  isShowMore = true;
   searchImage(keyWord);
 });
 
@@ -35,12 +42,16 @@ async function searchImage(keyWord) {
     </div>`;
   });
 
-  // Add new photos to the page
-  document.querySelector(".search-results").innerHTML += imageContainer;
+  // See if isShowMore is true or false
+  isShowMore
+    ? (document.querySelector(".search-results").innerHTML += imageContainer)
+    : (document.querySelector(".search-results").innerHTML = imageContainer);
   showMoreBtn.style.display = "block";
 }
 
 function handleKeyDown() {
+  // Set pageNum to 1 every time a new type of image is searched
+  pageNum = 1;
   if (event.key === "Enter") {
     const keyWord = searchInput.value;
     searchImage(keyWord);
