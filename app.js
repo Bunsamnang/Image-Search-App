@@ -7,6 +7,7 @@ let pageNum = 1;
 
 // initialize isShowMore to be false
 let isShowMore = false;
+
 searchBtn.addEventListener("click", () => {
   isShowMore = false;
   // Set pageNum to 1 every time a new type of image is searched
@@ -21,6 +22,7 @@ searchInput.addEventListener("keydown", () => {
 });
 
 // Increase the page number when clicking show more button
+
 showMoreBtn.addEventListener("click", () => {
   const keyWord = searchInput.value;
   pageNum += 1;
@@ -52,6 +54,7 @@ async function searchImage(keyWord) {
 function handleKeyDown() {
   // Set pageNum to 1 every time a new type of image is searched
   pageNum = 1;
+
   if (event.key === "Enter") {
     const keyWord = searchInput.value;
     searchImage(keyWord);
